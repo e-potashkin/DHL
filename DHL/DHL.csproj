@@ -52,10 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DHLRestClient.cs" />
-    <Compile Include="Handlers\AuthenticatedHttpClientHandler.cs" />
-    <Compile Include="Models\AuthResponse.cs" />
-    <Compile Include="Contracts\IDHLApi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,7 +59,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DHL.Sdk\DHL.Sdk.csproj">
+      <Project>{9359A97D-65D5-4BFE-87C5-DE1C3FCA7009}</Project>
+      <Name>DHL.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Refit.5.0.23\build\net461\refit.targets" Condition="Exists('..\packages\Refit.5.0.23\build\net461\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

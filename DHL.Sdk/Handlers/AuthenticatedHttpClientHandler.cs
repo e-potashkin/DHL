@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using DHL.Models;
+using DHL.Sdk.Models.Responses;
 
-namespace DHL.Handlers
+namespace DHL.Sdk.Handlers
 {
     public class AuthenticatedHttpClientHandler : HttpClientHandler
     {

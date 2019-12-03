@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DHL.Models
+namespace DHL.Sdk.Models.Responses
 {
     public class AuthResponse
     {

@@ -1,7 +1,9 @@
-﻿using Refit;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DHL.Handlers;
+using DHL.Models;
+using Refit;
 
 namespace DHL
 {
@@ -20,11 +22,11 @@ namespace DHL
             Console.ReadLine();
         }
 
-        private static async Task<string> GetAccessToken()
+        private static async Task<AuthResponse> GetAccessToken()
         {
             var response = await _api.GetAccessTokenAsync(USER_NAME, USER_PASSWORD);
 
-            return response.AccessToken;
+            return response;
         }
     }
 }

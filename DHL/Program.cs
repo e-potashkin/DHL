@@ -22,11 +22,6 @@ namespace DHL
             Console.ReadLine();
         }
 
-        private static async Task<AuthResponse> GetAccessToken()
-        {
-            var response = await _api.GetAccessTokenAsync(USER_NAME, USER_PASSWORD);
-
-            return response;
-        }
+        private static async Task<AuthResponse> GetAccessToken() => await _api.GetAccessTokenAsync(USER_NAME, USER_PASSWORD);
     }
 }

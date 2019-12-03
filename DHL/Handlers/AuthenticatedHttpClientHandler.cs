@@ -1,19 +1,19 @@
-﻿using DHL.Models;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using DHL.Models;
 
 namespace DHL.Handlers
 {
     public class AuthenticatedHttpClientHandler : HttpClientHandler
     {
-        private readonly Func<Task<AuthResponse>> getToken;
+        private readonly Func<Task<AuthResponse>> _getToken;
 
         public AuthenticatedHttpClientHandler(Func<Task<AuthResponse>> getToken)
         {
-            this.getToken = getToken ?? throw new ArgumentNullException(nameof(getToken));
+            _getToken = getToken ?? throw new ArgumentNullException(nameof(getToken));
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -21,7 +21,7 @@ namespace DHL.Handlers
             var auth = request.Headers.Authorization;
             if (auth != null)
             {
-                var token = await getToken().ConfigureAwait(false);
+                var token = await _getToken().ConfigureAwait(false);
                 request.Headers.Authorization = new AuthenticationHeaderValue(auth.Scheme, token.AccessToken);
             }
 

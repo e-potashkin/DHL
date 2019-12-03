@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DHLRestClient.cs" />
     <Compile Include="Handlers\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Models\AuthResponse.cs" />
     <Compile Include="Contracts\IDHLApi.cs" />

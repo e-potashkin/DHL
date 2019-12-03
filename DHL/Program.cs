@@ -9,19 +9,18 @@ namespace DHL
 {
     class Program
     {
-        private static IDHLApi _api;
+        //private static IDHLApi _api;
         private const string USER_NAME = "smart";
         private const string USER_PASSWORD = "/2F0WPhur!";
         private const string BASE_ADDRESS = "https://api-qa.dhlecommerce.com";
+        private const string SANDBOX_ADDRESS = "https://api-sandbox.dhlecommerce.com";
 
         static async Task Main(string[] args)
         {
-            _api = RestService.For<IDHLApi>(new HttpClient(new AuthenticatedHttpClientHandler(GetAccessToken)) { BaseAddress = new Uri(BASE_ADDRESS) });
-            var label = await _api.GetLabelAsync();
+            var dhlClient = new DHLRestClient(USER_NAME, USER_PASSWORD, BASE_ADDRESS);
+            var label = await dhlClient.Api.GetLabelAsync();
 
             Console.ReadLine();
         }
-
-        private static async Task<AuthResponse> GetAccessToken() => await _api.GetAccessTokenAsync(USER_NAME, USER_PASSWORD);
     }
 }

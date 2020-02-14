@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Eugene\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Eugene\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_DHL.-385479380.00" t="ExcludeRecursive" />
+    <e p="D:\Projects\DHL" t="IncludeFlat">
+      <e p=".git\info\exclude" t="IncludeRecursive" />
+      <e p="DHL" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DHL.csproj" t="IncludeRecursive" />
+        <e p="Helpers" t="Include">
+          <e p="DHLHelper.cs" t="Include" />
+          <e p="PrintHelper.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Request" t="Include">
+            <e p="Address.cs" t="Include" />
+            <e p="Notification.cs" t="Include" />
+            <e p="Receiver.cs" t="Include" />
+            <e p="Shipment.cs" t="Include" />
+            <e p="ShipmentDetails.cs" t="Include" />
+            <e p="ShipmentOrder.cs" t="Include" />
+            <e p="Shipper.cs" t="Include" />
+          </e>
+          <e p="Response" t="Include">
+            <e p="LabelResponse.cs" t="Include" />
+            <e p="SOAPEnvelope.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+      </e>
+      <e p="DHL.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

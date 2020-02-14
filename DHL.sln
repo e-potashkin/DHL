@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHL", "DHL\DHL.csproj", "{2D5CCAC2-C1A1-4536-8C6C-8F6A7ED24E8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHL.Sdk", "DHL.Sdk\DHL.Sdk.csproj", "{9359A97D-65D5-4BFE-87C5-DE1C3FCA7009}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHL.FileWatcher", "DHL.FileWatcher\DHL.FileWatcher.csproj", "{98C35D8F-C935-43CA-B814-868575E5F694}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{2D5CCAC2-C1A1-4536-8C6C-8F6A7ED24E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D5CCAC2-C1A1-4536-8C6C-8F6A7ED24E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D5CCAC2-C1A1-4536-8C6C-8F6A7ED24E8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9359A97D-65D5-4BFE-87C5-DE1C3FCA7009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9359A97D-65D5-4BFE-87C5-DE1C3FCA7009}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9359A97D-65D5-4BFE-87C5-DE1C3FCA7009}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9359A97D-65D5-4BFE-87C5-DE1C3FCA7009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98C35D8F-C935-43CA-B814-868575E5F694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C35D8F-C935-43CA-B814-868575E5F694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C35D8F-C935-43CA-B814-868575E5F694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C35D8F-C935-43CA-B814-868575E5F694}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

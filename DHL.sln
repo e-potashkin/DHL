@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHL.FileWatcher", "DHL.FileWatcher\DHL.FileWatcher.csproj", "{98C35D8F-C935-43CA-B814-868575E5F694}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHL", "DHL\DHL.csproj", "{98C35D8F-C935-43CA-B814-868575E5F694}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHL.Common", "DHL.Common\DHL.Common.csproj", "{8B397815-762E-47C9-93DE-4B7EE124BA69}"
 EndProject

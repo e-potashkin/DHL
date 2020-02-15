@@ -1,6 +1,6 @@
 ﻿using DHL.Common.Models.Authentication;
 
-namespace DHL.FileWatcher.Configuration
+namespace DHL.Configuration
 {
     public class AppConfiguration
     {

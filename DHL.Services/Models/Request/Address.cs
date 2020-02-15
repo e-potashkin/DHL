@@ -1,4 +1,4 @@
-﻿namespace DHL.Models.Request
+﻿namespace DHL.Services.Models.Request
 {
     public class Address
     {

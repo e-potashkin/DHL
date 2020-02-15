@@ -2,12 +2,12 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using DHL.Common;
 using DHL.Common.Utils;
-using DHL.FileWatcher.Configuration;
+using DHL.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DHL.FileWatcher
+namespace DHL
 {
     public static class Startup
     {

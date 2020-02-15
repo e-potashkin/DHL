@@ -4,7 +4,7 @@ using DHL.Services.Abstractions;
 using DHL.Services.Abstractions.Senders;
 using DHL.Services.Senders;
 
-namespace DHL.FileWatcher.Configuration
+namespace DHL.Configuration
 {
     public class ServicesModule : Module
     {

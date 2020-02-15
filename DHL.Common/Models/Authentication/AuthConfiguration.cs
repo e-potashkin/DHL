@@ -11,7 +11,5 @@ namespace DHL.Common.Models.Authentication
         public string ApiPassword { get; set; }
 
         public string Url { get; set; }
-
-        public string Base64Token { get; set; }
     }
 }

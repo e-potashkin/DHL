@@ -1,4 +1,4 @@
-﻿namespace DHL.DHL.Services.Abstractions
+﻿namespace DHL.Services.Abstractions
 {
     public interface IMonitorDirectoryService
     {

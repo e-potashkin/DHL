@@ -6,7 +6,7 @@ using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Microsoft.Extensions.DependencyModel;
 
-namespace DHL.DHL.Common
+namespace DHL.Common
 {
     /// <summary>
     /// TopUp container components registry

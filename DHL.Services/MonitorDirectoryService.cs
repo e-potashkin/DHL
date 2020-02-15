@@ -1,15 +1,16 @@
-﻿using System;
-using System.IO;
-using DHL.DHL.Services.Abstractions;
+﻿using System.IO;
+using DHL.Services.Abstractions;
 
-namespace DHL.DHL.Services
+namespace DHL.Services
 {
     public class MonitorDirectoryService : IMonitorDirectoryService
     {
+        private readonly IImportService _importService;
         private readonly string _inputPath;
 
-        public MonitorDirectoryService(string inputPath)
+        public MonitorDirectoryService(IImportService importService, string inputPath)
         {
+            _importService = importService;
             _inputPath = inputPath;
         }
 
@@ -25,9 +26,9 @@ namespace DHL.DHL.Services
             fileSystemWatcher.Created += FileSystemWatcher_Created;
         }
 
-        private static void FileSystemWatcher_Created(object sender, FileSystemEventArgs e)
+        private void FileSystemWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            Console.WriteLine("File created: {0}", e.Name);
+            _importService.ImportFromCsv(e.FullPath);
         }
     }
 }

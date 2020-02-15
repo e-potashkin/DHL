@@ -1,6 +1,6 @@
 using System;
 
-namespace DHL.DHL.Common.Utils
+namespace DHL.Common.Utils
 {
     /// <summary>
     /// Configurator used for operations with current System.Environment.

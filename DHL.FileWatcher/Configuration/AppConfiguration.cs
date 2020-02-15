@@ -1,4 +1,4 @@
-﻿using DHL.DHL.FileWatcher.Configuration;
+﻿using DHL.Common.Models.Authentication;
 
 namespace DHL.FileWatcher.Configuration
 {
@@ -8,6 +8,6 @@ namespace DHL.FileWatcher.Configuration
 
         public string OutputPath { get; set; }
 
-        public CredentialsConfiguration CredentialsConfiguration { get; set; }
+        public AuthConfiguration AuthConfiguration { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Autofac;
-using DHL.DHL.FileWatcher;
-using DHL.DHL.Services.Abstractions;
+using DHL.Services.Abstractions;
 
 namespace DHL.FileWatcher
 {
@@ -18,4 +17,3 @@ namespace DHL.FileWatcher
         }
     }
 }
-// TODO: ProcessFIle(string fileContent)

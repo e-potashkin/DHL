@@ -1,7 +1,6 @@
-namespace DHL.DHL.FileWatcher.Configuration
+namespace DHL.Common.Models.Authentication
 {
-
-    public class CredentialsConfiguration
+    public class AuthConfiguration
     {
         public string User { get; set; }
 
@@ -12,5 +11,7 @@ namespace DHL.DHL.FileWatcher.Configuration
         public string ApiPassword { get; set; }
 
         public string Url { get; set; }
+
+        public string Base64Token { get; set; }
     }
 }

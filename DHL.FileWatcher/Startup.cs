@@ -1,25 +1,28 @@
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using DHL.Common;
-using DHL.DHL.Common;
-using DHL.DHL.Common.Utils;
-using DHL.DHL.Services;
-using DHL.DHL.Services.Abstractions;
+using DHL.Common.Utils;
 using DHL.FileWatcher.Configuration;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace DHL.DHL.FileWatcher
+namespace DHL.FileWatcher
 {
     public static class Startup
     {
         public static IContainer BuildContainer()
         {
-            var builder = new ConfigurationBuilder();
+            var services = new ServiceCollection();
+            var configurationBuilder = new ConfigurationBuilder();
 
             return new ApplicationConfigurator<AppConfiguration>(null, (builder, appConfig) =>
             {
+                services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
                 builder.RegisterModule(new AutoregisterableModule("DHL"));
-                builder.RegisterType<MonitorDirectoryService>().As<IMonitorDirectoryService>().WithParameter("inputPath", appConfig.InputPath);
-            }, builder)
+                builder.RegisterModule(new ServicesModule(appConfig));
+                builder.Populate(services);
+            }, configurationBuilder)
             .AddEnvironmentVariables()
             .AddJsonFile(EnvironmentConfigurator.GetEnvironmentName())
             .Configure();

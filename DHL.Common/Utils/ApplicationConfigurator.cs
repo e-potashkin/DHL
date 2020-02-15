@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Autofac;
 using Microsoft.Extensions.Configuration;
 
-namespace DHL.Common
+namespace DHL.Common.Utils
 {
     public class ApplicationConfigurator<T> where T : class, new()
     {
@@ -18,12 +17,6 @@ namespace DHL.Common
             _configurationBuilder = configurationBuilder;
             _customConfigAction = customConfigAction;
             _customContainerBuilder = customContainerBuilder;
-        }
-
-        public ApplicationConfigurator<T> AddDefaultConfiguration(IReadOnlyDictionary<string, string> defaultConfiguration)
-        {
-            _configurationBuilder.AddInMemoryCollection(defaultConfiguration);
-            return this;
         }
 
         public ApplicationConfigurator<T> AddEnvironmentVariables()

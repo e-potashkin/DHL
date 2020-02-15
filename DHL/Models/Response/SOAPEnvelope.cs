@@ -8,19 +8,19 @@ namespace DHL.Models.Response
     {
         [XmlAttribute(AttributeName = "soapenv", Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
         public string soapenva { get; set; }
-       
+
         [XmlAttribute(AttributeName = "xsd", Namespace = "http://www.w3.org/2001/XMLSchema")]
         public string xsd { get; set; }
-       
+
         [XmlAttribute(AttributeName = "xsi", Namespace = "http://www.w3.org/2001/XMLSchema-instance")]
         public string xsi { get; set; }
-        
+
         [XmlElement(ElementName = "Body", Namespace = "http://schemas.xmlsoap.org/soap/envelope/")]
         public ResponseBody<CreateShipmentOrderResponse> body { get; set; }
-        
+
         [XmlNamespaceDeclarations]
         public XmlSerializerNamespaces xmlns = new XmlSerializerNamespaces();
-        
+
         public SOAPEnvelope()
         {
             xmlns.Add("soapenv", "http://schemas.xmlsoap.org/soap/envelope/");
@@ -33,6 +33,7 @@ namespace DHL.Models.Response
         [XmlElement(Namespace = "http://xmlns.xyz.com/webservice/version")]
         public T Body { get; set; }
     }
+
     public class CreateShipmentOrderResponse
     {
         public CreationState CreationState { get; set; }
@@ -45,6 +46,6 @@ namespace DHL.Models.Response
 
     public class LabelData
     {
-        public string labelUrl { get; set; }
+        public string LabelUrl { get; set; }
     }
 }

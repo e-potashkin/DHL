@@ -1,9 +1,13 @@
-﻿namespace DHL.FileWatcher.Configuration
+﻿using DHL.DHL.FileWatcher.Configuration;
+
+namespace DHL.FileWatcher.Configuration
 {
     public class AppConfiguration
     {
-        public string DirectoryInputPath { get; set; }
+        public string InputPath { get; set; }
 
-        public string DirectoryOutputPath { get; set; }
+        public string OutputPath { get; set; }
+
+        public CredentialsConfiguration CredentialsConfiguration { get; set; }
     }
 }

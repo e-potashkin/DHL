@@ -1,7 +1,9 @@
-﻿namespace DHL.Services.Abstractions
+﻿using System.Threading.Tasks;
+
+namespace DHL.Services.Abstractions
 {
     public interface IImportService
     {
-        void ImportFromCsv(string filePath);
+        Task ImportCsvAsync(string filePath);
     }
 }

@@ -2,8 +2,12 @@
 {
     public class ShipmentOrder
     {
-        public string SequenceNumber { get; set; }
+        public string User { get; set; }
 
-        public Shipment Shipment { get; set; }
+        public string PhoneNumber { get; set; }
+
+        // public string SequenceNumber { get; set; }
+
+        // public Shipment Shipment { get; set; }
     }
 }

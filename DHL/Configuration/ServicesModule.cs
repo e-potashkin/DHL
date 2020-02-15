@@ -21,7 +21,7 @@ namespace DHL.Configuration
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<MonitorDirectoryService>().As<IMonitorDirectoryService>().WithParameter("inputPath", _appConfig.InputPath);
-            builder.RegisterType<OrderSender>().As<IOrderSender>().WithParameter("authConfig", _appConfig.AuthConfiguration);
+            builder.RegisterType<ShipmentOrderSender>().As<IShipmentOrderSender>().WithParameter("authConfig", _appConfig.AuthConfiguration);
         }
     }
 }

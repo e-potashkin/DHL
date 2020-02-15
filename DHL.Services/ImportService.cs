@@ -2,35 +2,38 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using CsvHelper;
-using DHL.Common.Models.Mappers;
 using DHL.Services.Abstractions;
 using DHL.Services.Abstractions.Senders;
+using DHL.Services.Models.Request;
 
 namespace DHL.Services
 {
     public class ImportService : IImportService
     {
-        private readonly IOrderSender _orderSender;
+        private readonly IShipmentOrderSender _shipmentOrderSender;
 
-        public ImportService(IOrderSender orderSender)
+        public ImportService(IShipmentOrderSender shipmentOrderSender)
         {
-            _orderSender = orderSender;
+            _shipmentOrderSender = shipmentOrderSender;
         }
 
-        public void ImportFromCsv(string filePath)
+        public async Task ImportCsvAsync(string filePath)
         {
-            IReadOnlyCollection<Test> records;
+            IEnumerable<ShipmentOrder> orders;
 
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Configuration.Delimiter = "|";
-                records = csv.GetRecords<Test>().ToList();
+                orders = csv.GetRecords<ShipmentOrder>().ToList();
             }
 
-            _orderSender.SendOrderToDHL();
-            // TODO: Send to the SOAP service
+            foreach (var order in orders)
+            {
+                await _shipmentOrderSender.SendAsync(order);
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Polly;
 using Polly.Retry;
 
-namespace DHL.Common.Contracts
+namespace DHL.Common.Helpers
 {
     /// <summary>
     /// Responsible for retry an operation.

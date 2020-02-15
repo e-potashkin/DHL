@@ -28,7 +28,7 @@ namespace DHL.Services
 
         private void FileSystemWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            _importService.ImportFromCsv(e.FullPath);
+            AsyncHelper.RunSync(() => _importService.ImportCsvAsync(e.FullPath));
         }
     }
 }

@@ -1,17 +1,25 @@
 using System.Threading.Tasks;
 using DHL.Common.Models.Authentication;
+using DHL.DHL.Services.Abstractions;
 using RestSharp;
 using RestSharp.Authenticators;
 
 namespace DHL.DHL.Services
 {
-    public class DhlHttpClientFactory
+    public class DhlHttpClientFactory : IDhlHttpClientFactory
     {
-        public async Task<IRestResponse> CreateShipmentOrderRequest(string payload, AuthConfiguration authConfig)
+        private readonly AuthConfiguration _authConfig;
+
+        public DhlHttpClientFactory(AuthConfiguration authConfig)
         {
-            var client = new RestClient(authConfig.Url)
+            _authConfig = authConfig;
+        }
+
+        public async Task<IRestResponse> CreateShipmentOrderRequest(string payload)
+        {
+            var client = new RestClient(_authConfig.Url)
             {
-                Authenticator = new HttpBasicAuthenticator(authConfig.User, authConfig.Signature)
+                Authenticator = new HttpBasicAuthenticator(_authConfig.User, _authConfig.Signature)
             }; //    "Base64Token": "c21hcnQ6cnVCQTc3IS4="
             var request = new RestRequest(Method.POST);
             // request.AddHeader("Authorization", $"Basic {_authConfig.Base64Token}");

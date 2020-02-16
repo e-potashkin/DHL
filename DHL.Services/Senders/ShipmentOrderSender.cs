@@ -1,33 +1,29 @@
 using System;
 using System.Threading.Tasks;
 using DHL.Common.Helpers;
-using DHL.Common.Models.Authentication;
-using DHL.DHL.Services;
-using DHL.Services.Abstractions.Senders;
+using DHL.DHL.Services.Abstractions;
 using DHL.Services.Models.Request;
 
 namespace DHL.Services.Senders
 {
     public class ShipmentOrderSender : IShipmentOrderSender
     {
-        private readonly AuthConfiguration _authConfig;
-        private readonly ShipmentOrderFactory _shipmentOrderFactory;
-        private readonly DhlHttpClientFactory _dhlHttpClientFactory;
+        private readonly IShipmentOrderFactory _shipmentOrderFactory;
+        private readonly IDhlHttpClientFactory _dhlHttpClientFactory;
 
-        public ShipmentOrderSender(AuthConfiguration authConfig)
+        public ShipmentOrderSender(IShipmentOrderFactory shipmentOrderFactory, IDhlHttpClientFactory dhlHttpClientFactory)
         {
-            _authConfig = authConfig;
-            _shipmentOrderFactory = new ShipmentOrderFactory();
-            _dhlHttpClientFactory = new DhlHttpClientFactory();
+            _shipmentOrderFactory = shipmentOrderFactory;
+            _dhlHttpClientFactory = dhlHttpClientFactory;
         }
 
         public async Task SendAsync(ShipmentOrder shipmentOrder)
         {
-            var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder, _authConfig);
+            var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder);
 
             var response = await RetryingHelper
                 .CreateDefaultPolicy<Exception>()
-                .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequest(payload, _authConfig));
+                .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequest(payload));
 
             if (response.IsSuccessful)
             {

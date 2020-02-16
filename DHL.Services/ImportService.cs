@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CsvHelper;
 using DHL.Services.Abstractions;
-using DHL.Services.Abstractions.Senders;
 using DHL.Services.Models.Request;
+using DHL.Services.Senders;
 
 namespace DHL.Services
 {

@@ -1,21 +1,29 @@
 using DHL.Common.Models.Authentication;
+using DHL.DHL.Services.Abstractions;
 using DHL.Services.Models.Request;
 
 namespace DHL.DHL.Services
 {
-    public class ShipmentOrderFactory
+    public class ShipmentOrderFactory : IShipmentOrderFactory
     {
-        public string CreatePayload(ShipmentOrder shipmentOrder, AuthConfiguration authConfig)
+        private readonly AuthConfiguration _authConfig;
+
+        public ShipmentOrderFactory(AuthConfiguration authConfig)
+        {
+            _authConfig = authConfig;
+        }
+
+        public string CreatePayload(ShipmentOrder shipmentOrder)
         {
             return string.Empty;
 //             return $@"<?xml version=""1.0"" encoding=""utf-8""?>
 // <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:cis=""http://dhl.de/webservice/cisbase"" xmlns:bus=""http://dhl.de/webservices/businesscustomershipping"">
 //    <soapenv:Header>
 //       <cis:Authentification>
-//          <cis:user>{authConfig.User}</cis:user>
-//          <cis:signature>{authConfig.Signature}</cis:signature>
-//          <cis:apiUser>{authConfig.ApiUser}</cis:apiUser>
-//          <cis:apiPassword>{authConfig.ApiPassword}</cis:apiPassword>
+//          <cis:user>{_authConfig.User}</cis:user>
+//          <cis:signature>{_authConfig.Signature}</cis:signature>
+//          <cis:apiUser>{_authConfig.ApiUser}</cis:apiUser>
+//          <cis:apiPassword>{_authConfig.ApiPassword}</cis:apiPassword>
 //       </cis:Authentification>
 //    </soapenv:Header>
 //    <soapenv:Body>

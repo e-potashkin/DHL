@@ -1,8 +1,8 @@
 using Autofac;
+using DHL.DHL.Services;
+using DHL.DHL.Services.Abstractions;
 using DHL.Services;
 using DHL.Services.Abstractions;
-using DHL.Services.Abstractions.Senders;
-using DHL.Services.Senders;
 
 namespace DHL.Configuration
 {
@@ -20,8 +20,9 @@ namespace DHL.Configuration
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ShipmentOrderFactory>().As<IShipmentOrderFactory>().WithParameter("authConfig", _appConfig.AuthConfiguration);
+            builder.RegisterType<DhlHttpClientFactory>().As<IDhlHttpClientFactory>().WithParameter("authConfig", _appConfig.AuthConfiguration);
             builder.RegisterType<MonitorDirectoryService>().As<IMonitorDirectoryService>().WithParameter("inputPath", _appConfig.InputPath);
-            builder.RegisterType<ShipmentOrderSender>().As<IShipmentOrderSender>().WithParameter("authConfig", _appConfig.AuthConfiguration);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace DHL
             return new ApplicationConfigurator<AppConfiguration>(null, (builder, appConfig) =>
             {
                 services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-                builder.RegisterModule(new AutoregisterableModule("DHL"));
+                builder.RegisterModule(new AutoregisterableModule(typeof(Startup).Assembly.GetName().Name));
                 builder.RegisterModule(new ServicesModule(appConfig));
                 builder.Populate(services);
             }, configurationBuilder)

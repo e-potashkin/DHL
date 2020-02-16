@@ -5,6 +5,6 @@ namespace DHL.DHL.Services.Abstractions
 {
     public interface IDhlHttpClientFactory
     {
-        Task<IRestResponse> CreateShipmentOrderRequest(string payload);
+        Task<IRestResponse> CreateShipmentOrderRequestAsync(string payload);
     }
 }

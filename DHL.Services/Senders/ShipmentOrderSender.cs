@@ -23,7 +23,7 @@ namespace DHL.Services.Senders
 
             var response = await RetryingHelper
                 .CreateDefaultPolicy<Exception>()
-                .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequest(payload));
+                .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequestAsync(payload));
 
             if (response.IsSuccessful)
             {

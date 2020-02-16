@@ -15,7 +15,7 @@ namespace DHL.DHL.Services
             _authConfig = authConfig;
         }
 
-        public async Task<IRestResponse> CreateShipmentOrderRequest(string payload)
+        public async Task<IRestResponse> CreateShipmentOrderRequestAsync(string payload)
         {
             var client = new RestClient(_authConfig.Url)
             {

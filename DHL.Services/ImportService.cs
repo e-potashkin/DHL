@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace DHL.Services
             _shipmentOrderSender = shipmentOrderSender;
         }
 
-        public async Task ImportCsvAsync(string filePath)
+        public async Task ImportAndProcessCsvAsync(string filePath)
         {
             IEnumerable<ShipmentOrder> orders;
 

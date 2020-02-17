@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -68,6 +68,7 @@ namespace DHL.Common.Helpers
             }, null);
             sync.BeginMessageLoop();
             SynchronizationContext.SetSynchronizationContext(oldContext);
+            
             return ret;
         }
 
@@ -78,9 +79,7 @@ namespace DHL.Common.Helpers
             public Exception InnerException { get; set; }
 
             private readonly AutoResetEvent _workItemsWaiting = new AutoResetEvent(false);
-
-            private readonly Queue<Tuple<SendOrPostCallback, object>> _items =
-                new Queue<Tuple<SendOrPostCallback, object>>();
+            private readonly Queue<Tuple<SendOrPostCallback, object>> _items = new Queue<Tuple<SendOrPostCallback, object>>();
 
             public override void Send(SendOrPostCallback d, object state)
             {

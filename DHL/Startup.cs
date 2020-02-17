@@ -1,3 +1,4 @@
+﻿using System.IO;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using DHL.Common;
@@ -22,6 +23,8 @@ namespace DHL
                 builder.RegisterModule(new AutoregisterableModule(typeof(Startup).Assembly.GetName().Name));
                 builder.RegisterModule(new ServicesModule(appConfig));
                 builder.Populate(services);
+                Directory.CreateDirectory(appConfig.InputPath);
+                Directory.CreateDirectory(appConfig.OutputPath);
             }, configurationBuilder)
             .AddEnvironmentVariables()
             .AddJsonFile(EnvironmentConfigurator.GetEnvironmentName())

@@ -27,6 +27,8 @@ namespace DHL.Services
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Configuration.Delimiter = "|";
+                csv.Configuration.HasHeaderRecord = false;
+
                 orders = csv.GetRecords<ShipmentOrder>().ToList();
             }
 

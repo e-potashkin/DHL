@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DHL.Common.Helpers;
-using DHL.DHL.Services.Abstractions;
+using DHL.Services.Abstractions;
 using DHL.Services.Models.Request;
 
 namespace DHL.Services.Senders

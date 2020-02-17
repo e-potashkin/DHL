@@ -4,10 +4,10 @@ namespace DHL.Configuration
 {
     public class AppConfiguration
     {
-        public string InputPath { get; set; }
+        public string InputPath { get; }
 
         public string OutputPath { get; set; }
 
-        public AuthConfiguration AuthConfiguration { get; set; }
+        public AuthConfiguration AuthConfiguration { get; }
     }
 }

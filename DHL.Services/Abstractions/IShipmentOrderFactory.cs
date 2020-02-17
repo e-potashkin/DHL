@@ -1,6 +1,6 @@
 using DHL.Services.Models.Request;
 
-namespace DHL.DHL.Services.Abstractions
+namespace DHL.Services.Abstractions
 {
     public interface IShipmentOrderFactory
     {

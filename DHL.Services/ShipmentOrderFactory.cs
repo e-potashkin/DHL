@@ -1,8 +1,8 @@
 using DHL.Common.Models.Authentication;
-using DHL.DHL.Services.Abstractions;
+using DHL.Services.Abstractions;
 using DHL.Services.Models.Request;
 
-namespace DHL.DHL.Services
+namespace DHL.Services
 {
     public class ShipmentOrderFactory : IShipmentOrderFactory
     {

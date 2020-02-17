@@ -7,9 +7,9 @@ namespace DHL.Common.Utils
     /// </summary>
     public static class EnvironmentConfigurator
     {
-        public const string Development = "Development";
+        private const string Development = "Development";
 
-        public const string Production = "Production";
+        private const string Production = "Production";
 
         /// <summary>
         /// Retrieves the name of the current Environment.

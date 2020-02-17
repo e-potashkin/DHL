@@ -1,6 +1,4 @@
 using Autofac;
-using DHL.DHL.Services;
-using DHL.DHL.Services.Abstractions;
 using DHL.Services;
 using DHL.Services.Abstractions;
 

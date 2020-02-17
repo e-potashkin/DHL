@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using DHL.Common.Models.Authentication;
-using DHL.DHL.Services.Abstractions;
+using DHL.Services.Abstractions;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace DHL.DHL.Services
+namespace DHL.Services
 {
     public class DhlHttpClientFactory : IDhlHttpClientFactory
     {

@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DHL.Services
+namespace DHL.Common.Helpers
 {
     //code from: http://social.msdn.microsoft.com/Forums/en/async/thread/163ef755-ff7b-4ea5-b226-bbe8ef5f4796
     public static class AsyncHelper
     {
         /// <summary>
-        /// Execute's an async Task method which has a void return value synchronously
+        /// Executes an async Task method which has a void return value synchronously
         /// </summary>
         /// <param name="task">Task method to execute</param>
         public static void RunSync(Func<Task> task)
         {
             var oldContext = SynchronizationContext.Current;
-            var synch = new ExclusiveSynchronizationContext();
-            SynchronizationContext.SetSynchronizationContext(synch);
-            synch.Post(async _ =>
+            var sync = new ExclusiveSynchronizationContext();
+            SynchronizationContext.SetSynchronizationContext(sync);
+            sync.Post(async _ =>
             {
                 try
                 {
@@ -25,15 +25,15 @@ namespace DHL.Services
                 }
                 catch (Exception e)
                 {
-                    synch.InnerException = e;
+                    sync.InnerException = e;
                     throw;
                 }
                 finally
                 {
-                    synch.EndMessageLoop();
+                    sync.EndMessageLoop();
                 }
             }, null);
-            synch.BeginMessageLoop();
+            sync.BeginMessageLoop();
 
             SynchronizationContext.SetSynchronizationContext(oldContext);
         }
@@ -47,10 +47,10 @@ namespace DHL.Services
         public static T RunSync<T>(Func<Task<T>> task)
         {
             var oldContext = SynchronizationContext.Current;
-            var synch = new ExclusiveSynchronizationContext();
-            SynchronizationContext.SetSynchronizationContext(synch);
+            var sync = new ExclusiveSynchronizationContext();
+            SynchronizationContext.SetSynchronizationContext(sync);
             T ret = default;
-            synch.Post(async _ =>
+            sync.Post(async _ =>
             {
                 try
                 {
@@ -58,15 +58,15 @@ namespace DHL.Services
                 }
                 catch (Exception e)
                 {
-                    synch.InnerException = e;
+                    sync.InnerException = e;
                     throw;
                 }
                 finally
                 {
-                    synch.EndMessageLoop();
+                    sync.EndMessageLoop();
                 }
             }, null);
-            synch.BeginMessageLoop();
+            sync.BeginMessageLoop();
             SynchronizationContext.SetSynchronizationContext(oldContext);
             return ret;
         }

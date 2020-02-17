@@ -11,7 +11,7 @@ namespace DHL
             var container = Startup.BuildContainer();
             var monitorService = container.Resolve<IMonitorDirectoryService>();
 
-            monitorService.RunWatcher();
+            monitorService.StartMonitoring();
 
             Console.Read();
         }

@@ -2,6 +2,6 @@
 {
     public interface IMonitorDirectoryService
     {
-        void RunWatcher();
+        void StartMonitoring();
     }
 }

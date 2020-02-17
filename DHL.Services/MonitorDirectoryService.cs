@@ -15,7 +15,7 @@ namespace DHL.Services
             _inputPath = inputPath;
         }
 
-        public void RunWatcher()
+        public void StartMonitoring()
         {
             var fileSystemWatcher = new FileSystemWatcher
             {

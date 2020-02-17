@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace DHL.Services.Models.Request
+namespace DHL.Services.Models
 {
     public class ShipmentOrder
     {

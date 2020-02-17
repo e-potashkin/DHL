@@ -68,7 +68,7 @@ namespace DHL.Common.Helpers
             }, null);
             sync.BeginMessageLoop();
             SynchronizationContext.SetSynchronizationContext(oldContext);
-            
+
             return ret;
         }
 

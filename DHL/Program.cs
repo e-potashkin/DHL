@@ -4,14 +4,14 @@ using DHL.Services.Abstractions;
 
 namespace DHL
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             var container = Startup.BuildContainer();
-            var monitorService = container.Resolve<IMonitorDirectoryService>();
+            var mds = container.Resolve<IMonitorDirectoryService>();
 
-            monitorService.StartMonitoring();
+            mds.StartMonitoring();
 
             Console.Read();
         }

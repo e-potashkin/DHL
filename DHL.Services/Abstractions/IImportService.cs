@@ -1,13 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DHL.Services.Abstractions
 {
     public interface IImportService
     {
-        /// <summary>
-        /// Starts a process pipeline (import, mapping, http request, saving result).
-        /// </summary>
-        /// <param name="filePath"></param>
-        Task ImportAndProcessCsvAsync(string filePath);
+        IReadOnlyCollection<T> ImportCsv<T>(string filePath) where T: class;
     }
 }

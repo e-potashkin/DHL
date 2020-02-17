@@ -1,4 +1,4 @@
-using DHL.Services.Models.Request;
+using DHL.Services.Models;
 
 namespace DHL.Services.Abstractions
 {

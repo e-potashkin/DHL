@@ -1,6 +1,6 @@
 using DHL.Common.Models.Authentication;
 using DHL.Services.Abstractions;
-using DHL.Services.Models.Request;
+using DHL.Services.Models;
 
 namespace DHL.Services
 {

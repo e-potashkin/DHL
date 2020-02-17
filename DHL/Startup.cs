@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using DHL.Common;
 using DHL.Common.Utils;
 using DHL.Configuration;
 using Microsoft.AspNetCore.Http;

@@ -6,12 +6,12 @@ namespace DHL.Services
 {
     public class MonitorDirectoryService : IMonitorDirectoryService
     {
-        private readonly IImportService _importService;
+        private readonly IDhlFileProcessor _dhlFileProcessor;
         private readonly string _inputPath;
 
-        public MonitorDirectoryService(IImportService importService, string inputPath)
+        public MonitorDirectoryService(IDhlFileProcessor dhlProcessor, string inputPath)
         {
-            _importService = importService;
+            _dhlFileProcessor = dhlProcessor;
             _inputPath = inputPath;
         }
 
@@ -29,7 +29,7 @@ namespace DHL.Services
 
         private void FileSystemWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            AsyncHelper.RunSync(() => _importService.ImportAndProcessCsvAsync(e.FullPath));
+            AsyncHelper.RunSync(() => _dhlFileProcessor.ProcessFile(e.FullPath));
         }
     }
 }

@@ -2,22 +2,24 @@ using System;
 using System.Threading.Tasks;
 using DHL.Common.Helpers;
 using DHL.Services.Abstractions;
-using DHL.Services.Models.Request;
+using DHL.Services.Models;
+using RestSharp;
 
-namespace DHL.Services.Senders
+namespace DHL.Services
 {
     public class ShipmentOrderSender : IShipmentOrderSender
     {
         private readonly IShipmentOrderFactory _shipmentOrderFactory;
         private readonly IDhlHttpClientFactory _dhlHttpClientFactory;
 
-        public ShipmentOrderSender(IShipmentOrderFactory shipmentOrderFactory, IDhlHttpClientFactory dhlHttpClientFactory)
+        public ShipmentOrderSender(IShipmentOrderFactory shipmentOrderFactory,
+                                   IDhlHttpClientFactory dhlHttpClientFactory)
         {
             _shipmentOrderFactory = shipmentOrderFactory;
             _dhlHttpClientFactory = dhlHttpClientFactory;
         }
 
-        public async Task SendAsync(ShipmentOrder shipmentOrder)
+        public async Task<IRestResponse> SendAsync(ShipmentOrder shipmentOrder)
         {
             var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder);
 
@@ -25,10 +27,7 @@ namespace DHL.Services.Senders
                 .CreateDefaultPolicy<Exception>()
                 .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequestAsync(payload));
 
-            if (response.IsSuccessful)
-            {
-                // TODO: implement
-            }
+            return response;
         }
     }
 }

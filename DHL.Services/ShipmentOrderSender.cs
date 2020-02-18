@@ -19,7 +19,7 @@ namespace DHL.Services
             _dhlHttpClientFactory = dhlHttpClientFactory;
         }
 
-        public async Task<IRestResponse> SendAsync(ShipmentOrder shipmentOrder)
+        public async Task<IRestResponse<ShipmentOrderResponse>> SendAsync(ShipmentOrder shipmentOrder)
         {
             var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder);
 

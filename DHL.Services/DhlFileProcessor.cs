@@ -25,7 +25,7 @@ namespace DHL.Services
 
                 if (response.IsSuccessful)
                 {
-                    // TODO: implement
+                    var labelUrl = response.Data.Body.CreateShipmentOrderResponse.CreationState.LabelData.LabelUrl;
                 }
             }
         }

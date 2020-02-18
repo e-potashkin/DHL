@@ -66,7 +66,7 @@ namespace DHL.Common.Helpers
         /// <param name="actionAsync">The executing action.</param>
         public static async Task ExecuteWithPolicy(this AsyncRetryPolicy policy, Func<Task> actionAsync)
         {
-            await policy.ExecuteAsync(async () => await actionAsync());
+            await policy.ExecuteAsync(async () => await actionAsync().ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace DHL.Common.Helpers
         /// <param name="actionAsync">The executing action.</param>
         public static async Task<TResponse> ExecuteWithPolicy<TResponse>(this AsyncRetryPolicy policy, Func<Task<TResponse>> actionAsync)
         {
-            return await policy.ExecuteAsync(async () => await actionAsync());
+            return await policy.ExecuteAsync(async () => await actionAsync().ConfigureAwait(false)).ConfigureAwait(false);
         }
     }
 }

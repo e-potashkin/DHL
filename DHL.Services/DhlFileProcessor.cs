@@ -21,7 +21,7 @@ namespace DHL.Services
 
             foreach (var order in orders)
             {
-                var response = await _shipmentOrderSender.SendAsync(order);
+                var response = await _shipmentOrderSender.SendAsync(order).ConfigureAwait(false);
 
                 if (response.IsSuccessful)
                 {

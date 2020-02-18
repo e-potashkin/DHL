@@ -19,15 +19,15 @@ namespace DHL.Services
         {
             var client = new RestClient(_authConfig.Url)
             {
-                Authenticator = new HttpBasicAuthenticator(_authConfig.User, _authConfig.Signature)
-            }; //    "Base64Token": "c21hcnQ6cnVCQTc3IS4="
+                Authenticator = new HttpBasicAuthenticator(_authConfig.ApiUser, _authConfig.ApiPassword)
+            };
+
             var request = new RestRequest(Method.POST);
-            // request.AddHeader("Authorization", $"Basic {_authConfig.Base64Token}");
             request.AddHeader("SOAPAction", "urn:createShipmentOrder");
             request.AddParameter("undefined", payload, ParameterType.RequestBody);
-            request.OnBeforeDeserialization = resp => resp.ContentType = "application/xml";
+            request.OnBeforeDeserialization = response => response.ContentType = "application/xml";
 
-            return await client.ExecuteAsync(request);
+            return await client.ExecuteAsync(request).ConfigureAwait(false);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace DHL.Common.Helpers
             {
                 try
                 {
-                    await task();
+                    await task().ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {
@@ -54,7 +54,7 @@ namespace DHL.Common.Helpers
             {
                 try
                 {
-                    ret = await task();
+                    ret = await task().ConfigureAwait(false);
                 }
                 catch (Exception e)
                 {

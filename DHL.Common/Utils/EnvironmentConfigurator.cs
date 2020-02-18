@@ -9,24 +9,13 @@ namespace DHL.Common.Utils
     {
         private const string Development = "Development";
 
-        private const string Production = "Production";
-
         /// <summary>
         /// Retrieves the name of the current Environment.
         /// </summary>
         public static string GetEnvironmentName()
         {
             var val = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            if (string.IsNullOrEmpty(val))
-            {
-#if !DEBUG
-                return Production;
-#else
-                return Development;
-#endif
-            }
-
-            return val;
+            return string.IsNullOrEmpty(val) ? Development : val;
         }
     }
 }

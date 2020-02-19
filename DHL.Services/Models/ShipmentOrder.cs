@@ -29,7 +29,7 @@ namespace DHL.Services.Models
         public string LastName { get; set; }
 
         [Index(15)]
-        public string ZIP { get; set; }
+        public string Zip { get; set; }
 
         [Index(16)]
         public string City { get; set; }

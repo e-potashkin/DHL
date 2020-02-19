@@ -5,13 +5,14 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Microsoft.Extensions.DependencyModel;
+using Module = Autofac.Module;
 
 namespace DHL.Common.Utils
 {
     /// <summary>
     /// TopUp container components registry
     /// </summary>
-    public class AutoregisterableModule : Autofac.Module
+    public class AutoregisterableModule : Module
     {
         private readonly string _nameFilter;
 

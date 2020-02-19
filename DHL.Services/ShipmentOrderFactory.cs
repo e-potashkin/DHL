@@ -69,7 +69,7 @@ namespace DHL.Services
                   <Address>
                      <cis:streetName>{shipmentOrder.StreetName}</cis:streetName>
                      <cis:streetNumber>{shipmentOrder.StreetNumber}</cis:streetNumber>
-                     <cis:zip>{shipmentOrder.ZIP}</cis:zip>
+                     <cis:zip>{shipmentOrder.Zip}</cis:zip>
                      <cis:city>{shipmentOrder.City}</cis:city>
                      <cis:Origin>
                         <cis:country>{Country}</cis:country>

@@ -1,19 +1,17 @@
 ﻿using CsvHelper.Configuration.Attributes;
+using DHL.Common.Extensions;
 
 namespace DHL.Services.Models
 {
     public class ShipmentOrder
     {
-        // [Index(0)]
-        // public string CustomerReference { get; set; }
-
         private string _customerReference;
 
         [Index(0)]
         public string CustomerReference
         {
             get { return _customerReference; }
-            set { _customerReference = value.Replace('<', ' ').Replace('>', ' '); }
+            set { _customerReference = value.ConvertToHtmlLtGtSymbol(); }
         }
 
         [Index(1)]

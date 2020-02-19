@@ -1,8 +1,12 @@
 using System.IO;
+using Autofac.Extras.DynamicProxy;
+using DHL.Common.Extensions;
+using DHL.Common.Utils;
 using DHL.Services.Abstractions;
 
 namespace DHL.Services
 {
+    [Intercept(typeof(LogInterceptor))]
     public class FileManagerService : IFileManagerService
     {
         private readonly string _outputPath;
@@ -28,7 +32,7 @@ namespace DHL.Services
 
         public void SaveLabel(string labelName, string outputDirectory, byte[] fileBytes)
         {
-            File.WriteAllBytes(Path.Combine(outputDirectory, $"{labelName}.pdf"), fileBytes);
+            File.WriteAllBytes(Path.Combine(outputDirectory, $"{labelName.RemoveLtGtSymbol()}.pdf"), fileBytes);
         }
     }
 }

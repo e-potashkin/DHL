@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Autofac;
@@ -30,21 +29,14 @@ namespace DHL.Common.Utils
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
-            var assemblies = new List<Assembly>();
             var dependencies = DependencyContext.Default.RuntimeLibraries.Where(x => x.Name.Contains(_nameFilter));
-            foreach (var library in dependencies)
-            {
-                var assembly = Assembly.Load(new AssemblyName(library.Name));
-                assemblies.Add(assembly);
-            }
+
+            builder.Register(_ => new LogInterceptor()).InstancePerLifetimeScope();
 
             var isProd = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production";
 
-            var containerBuilder = builder.RegisterAssemblyTypes(assemblies.ToArray()).AsImplementedInterfaces();
-            if (!isProd)
-            {
-                containerBuilder.EnableInterfaceInterceptors();
-            }
+            var containerBuilder = builder.RegisterAssemblyTypes(dependencies.Select(library => Assembly.Load(new AssemblyName(library.Name))).ToArray()).AsImplementedInterfaces();
+            if (!isProd) containerBuilder.EnableInterfaceInterceptors();
 
             base.Load(builder);
         }

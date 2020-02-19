@@ -1,6 +1,9 @@
 ﻿using System;
 using Autofac;
+using Destructurama;
 using Microsoft.Extensions.Configuration;
+using Serilog;
+using Serilog.Exceptions;
 
 namespace DHL.Common.Utils
 {
@@ -43,9 +46,26 @@ namespace DHL.Common.Utils
             _builder.RegisterInstance(appConfiguration).As<T>();
 
             _customConfigAction?.Invoke(configuration, appConfiguration);
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration).Enrich.WithExceptionDetails().Enrich.FromLogContext()
+                .Destructure.UsingAttributes()
+                .WriteTo.Console()
+                .WriteTo.File("logs\\dhl.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            _builder.Register(_ => Log.Logger).AsImplementedInterfaces().SingleInstance();
+
             _customContainerBuilder?.Invoke(_builder, appConfiguration);
 
+            LogEnvironment(appConfiguration);
+
             return _builder.Build();
+        }
+
+        protected virtual void LogEnvironment(T appConfiguration)
+        {
+            Log.Logger.Information($"Starting ENV {EnvironmentConfigurator.GetEnvironmentName()}");
         }
     }
 }

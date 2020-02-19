@@ -1,9 +1,12 @@
 using System.Threading.Tasks;
+using Autofac.Extras.DynamicProxy;
+using DHL.Common.Utils;
 using DHL.Services.Abstractions;
 using DHL.Services.Models;
 
 namespace DHL.Services
 {
+    [Intercept(typeof(LogInterceptor))]
     public class DhlFileProcessor : IDhlFileProcessor
     {
         private readonly IImportService _importService;

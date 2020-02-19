@@ -2,11 +2,14 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Autofac.Extras.DynamicProxy;
 using CsvHelper;
+using DHL.Common.Utils;
 using DHL.Services.Abstractions;
 
 namespace DHL.Services
 {
+    [Intercept(typeof(LogInterceptor))]
     public class ImportService : IImportService
     {
         public IReadOnlyCollection<T> ImportCsv<T>(string filePath)

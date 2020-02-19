@@ -4,6 +4,6 @@ namespace DHL.Services.Abstractions
 {
     public interface IImportService
     {
-        IReadOnlyCollection<T> ImportCsv<T>(string filePath) where T: class;
+        IReadOnlyCollection<T> ImportCsv<T>(string filePath);
     }
 }

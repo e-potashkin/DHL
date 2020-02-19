@@ -6,6 +6,6 @@ namespace DHL.Services.Abstractions
 {
     public interface IShipmentOrderSender
     {
-        Task<IRestResponse<ShipmentOrderResponse>> SendAsync(ShipmentOrder shipmentOrders);
+        Task<IRestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrders);
     }
 }

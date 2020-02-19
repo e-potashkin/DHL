@@ -9,7 +9,7 @@ namespace DHL.Services
 {
     public class ImportService : IImportService
     {
-        public IReadOnlyCollection<T> ImportCsv<T>(string filePath) where T : class
+        public IReadOnlyCollection<T> ImportCsv<T>(string filePath)
         {
             IReadOnlyCollection<T> orders;
 

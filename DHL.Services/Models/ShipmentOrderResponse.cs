@@ -89,5 +89,10 @@ namespace DHL.Services.Models
 
         [XmlAttribute(AttributeName = "xsi", Namespace = "http://www.w3.org/2000/xmlns/")]
         public string Xsi { get; set; }
+
+        public string GetLabelUrl()
+        {
+            return Body.CreateShipmentOrderResponse.CreationState.LabelData.LabelUrl;
+        }
     }
 }

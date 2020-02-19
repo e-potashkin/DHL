@@ -21,11 +21,11 @@ namespace DHL.Services
 
             foreach (var order in orders)
             {
-                var response = await _shipmentOrderSender.SendAsync(order).ConfigureAwait(false);
+                var response = await _shipmentOrderSender.SendAsync<ShipmentOrderResponse>(order).ConfigureAwait(false);
 
                 if (response.IsSuccessful)
                 {
-                    var labelUrl = response.Data.Body.CreateShipmentOrderResponse.CreationState.LabelData.LabelUrl;
+                    var labelUrl = response.Data.GetLabelUrl();
                 }
             }
         }

@@ -19,13 +19,13 @@ namespace DHL.Services
             _dhlHttpClientFactory = dhlHttpClientFactory;
         }
 
-        public async Task<IRestResponse<ShipmentOrderResponse>> SendAsync(ShipmentOrder shipmentOrder)
+        public async Task<IRestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrder)
         {
             var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder);
 
             var response = await RetryingHelper
                 .CreateDefaultPolicy<Exception>()
-                .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequestAsync(payload)).ConfigureAwait(false);
+                .ExecuteWithPolicy(() => _dhlHttpClientFactory.CreateShipmentOrderRequestAsync<T>(payload)).ConfigureAwait(false);
 
             return response;
         }

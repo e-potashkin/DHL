@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
-using Autofac.Extras.DynamicProxy;
-using DHL.Common.Utils;
 using DHL.Services.Abstractions;
 using DHL.Services.Models;
+using Serilog;
 
 namespace DHL.Services
 {
-    [Intercept(typeof(LogInterceptor))]
     public class DhlFileProcessor : IDhlFileProcessor
     {
         private readonly IImportService _importService;
@@ -27,6 +25,7 @@ namespace DHL.Services
 
             foreach (var order in orders)
             {
+                Log.Information("Request to the DHL started.");
                 var response = await _shipmentOrderSender.SendAsync<ShipmentOrderResponse>(order).ConfigureAwait(false);
 
                 if (response.IsSuccessful)
@@ -34,9 +33,18 @@ namespace DHL.Services
                     var labelUrl = response.Data.GetLabelUrl();
                     if (!string.IsNullOrEmpty(labelUrl))
                     {
+                        Log.Information($"Request successful. LabelUrl: {labelUrl}");
                         var fileBytes = _shipmentOrderSender.DownloadFile(labelUrl);
                         _fileManagerService.SaveLabel(order.CustomerReference, outputDirectory, fileBytes);
                     }
+                    else
+                    {
+                        Log.Warning("LabelUrl is empty.");
+                    }
+                }
+                else
+                {
+                    Log.Warning($"Request to the DHL has been failed. ErrorMessage: {response.ErrorMessage}");
                 }
             }
         }

@@ -1,12 +1,9 @@
 ﻿using System.IO;
-using Autofac.Extras.DynamicProxy;
 using DHL.Common.Helpers;
-using DHL.Common.Utils;
 using DHL.Services.Abstractions;
 
 namespace DHL.Services
 {
-    [Intercept(typeof(LogInterceptor))]
     public class MonitorDirectoryService : IMonitorDirectoryService
     {
         private readonly IDhlFileProcessor _dhlFileProcessor;

@@ -3,6 +3,7 @@ using Autofac.Extras.DynamicProxy;
 using DHL.Common.Extensions;
 using DHL.Common.Utils;
 using DHL.Services.Abstractions;
+using Serilog;
 
 namespace DHL.Services
 {
@@ -23,16 +24,21 @@ namespace DHL.Services
             var movedFilePath = Path.Combine(outputDirectory, $"{fileName}.csv");
 
             Directory.CreateDirectory(outputDirectory);
+            Log.Information($"Directory has been created. Path: {outputDirectory}");
 
             if (File.Exists(movedFilePath)) File.Delete(movedFilePath);
             File.Move(filePath, movedFilePath);
+            Log.Information($"FIle {fileName} has been moved to the {outputDirectory}");
 
             return outputDirectory;
         }
 
         public void SaveLabel(string labelName, string outputDirectory, byte[] fileBytes)
         {
-            File.WriteAllBytes(Path.Combine(outputDirectory, $"{labelName.RemoveLtGtSymbol()}.pdf"), fileBytes);
+            var fileName = $"{labelName.RemoveLtGtSymbol()}.pdf";
+
+            File.WriteAllBytes(Path.Combine(outputDirectory, fileName), fileBytes);
+            Log.Information($"Label {fileName} has been saved to the: {outputDirectory}");
         }
     }
 }

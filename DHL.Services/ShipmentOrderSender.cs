@@ -1,12 +1,15 @@
 using System;
 using System.Threading.Tasks;
+using Autofac.Extras.DynamicProxy;
 using DHL.Common.Helpers;
+using DHL.Common.Utils;
 using DHL.Services.Abstractions;
 using DHL.Services.Models;
 using RestSharp;
 
 namespace DHL.Services
 {
+    [Intercept(typeof(LogInterceptor))]
     public class ShipmentOrderSender : IShipmentOrderSender
     {
         private readonly IShipmentOrderFactory _shipmentOrderFactory;

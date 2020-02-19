@@ -19,6 +19,8 @@ namespace DHL.Services
             _dhlHttpClientFactory = dhlHttpClientFactory;
         }
 
+        public byte[] DownloadFile(string request) => _dhlHttpClientFactory.DownloadFile(request);
+
         public async Task<IRestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrder)
         {
             var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder);

@@ -18,6 +18,8 @@ namespace DHL.Services
             {
                 csv.Configuration.Delimiter = "|";
                 csv.Configuration.HasHeaderRecord = false;
+                csv.Configuration.MissingFieldFound = null;
+                csv.Configuration.IgnoreBlankLines = true;
 
                 orders = csv.GetRecords<T>().ToList();
             }

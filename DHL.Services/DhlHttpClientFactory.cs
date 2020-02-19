@@ -15,9 +15,15 @@ namespace DHL.Services
             _authConfig = authConfig;
         }
 
+        public byte[] DownloadFile(string request)
+        {
+            var restClient = new RestClient(request);
+            return restClient.DownloadData(new RestRequest("#", Method.GET));
+        }
+
         public async Task<IRestResponse<T>> CreateShipmentOrderRequestAsync<T>(string payload)
         {
-            var client = new RestClient(_authConfig.Url)
+            var restClient = new RestClient(_authConfig.Url)
             {
                 Authenticator = new HttpBasicAuthenticator(_authConfig.ApiUser, _authConfig.ApiPassword)
             };
@@ -27,7 +33,7 @@ namespace DHL.Services
             request.AddParameter("undefined", payload, ParameterType.RequestBody);
             request.OnBeforeDeserialization = response => response.ContentType = "application/xml";
 
-            return await client.ExecuteAsync<T>(request).ConfigureAwait(false);
+            return await restClient.ExecuteAsync<T>(request).ConfigureAwait(false);
         }
     }
 }

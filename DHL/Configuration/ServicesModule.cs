@@ -21,6 +21,7 @@ namespace DHL.Configuration
             builder.RegisterType<ShipmentOrderFactory>().As<IShipmentOrderFactory>().WithParameter("authConfig", _appConfig.AuthConfiguration);
             builder.RegisterType<DhlHttpClientFactory>().As<IDhlHttpClientFactory>().WithParameter("authConfig", _appConfig.AuthConfiguration);
             builder.RegisterType<MonitorDirectoryService>().As<IMonitorDirectoryService>().WithParameter("inputPath", _appConfig.InputPath);
+            builder.RegisterType<FileManagerService>().As<IFileManagerService>().WithParameter("outputPath", _appConfig.OutputPath);
         }
     }
 }

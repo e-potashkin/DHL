@@ -43,10 +43,10 @@ namespace DHL.Services
                <ShipmentDetails>
                   <product>{Product}</product>
                   <cis:accountNumber>{AccountNumber}</cis:accountNumber>
-                  <customerReference>{shipmentOrder.CustomerReference.Replace('<', ' ').Replace('>', ' ')}</customerReference>
+                  <customerReference>{shipmentOrder.CustomerReference}</customerReference>
                   <shipmentDate>{DateTime.Now:yyyy-MM-dd}</shipmentDate>
                   <ShipmentItem>
-                     <weightInKG>{shipmentOrder.Weight.Replace(',', '.')}</weightInKG>
+                     <weightInKG>{shipmentOrder.Weight}</weightInKG>
                   </ShipmentItem>
                </ShipmentDetails>
                <Shipper>

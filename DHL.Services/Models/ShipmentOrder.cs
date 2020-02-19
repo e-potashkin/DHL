@@ -4,8 +4,17 @@ namespace DHL.Services.Models
 {
     public class ShipmentOrder
     {
+        // [Index(0)]
+        // public string CustomerReference { get; set; }
+
+        private string _customerReference;
+
         [Index(0)]
-        public string CustomerReference { get; set; }
+        public string CustomerReference
+        {
+            get { return _customerReference; }
+            set { _customerReference = value.Replace('<', ' ').Replace('>', ' '); }
+        }
 
         [Index(1)]
         public string Mamdat { get; set; }
@@ -34,8 +43,14 @@ namespace DHL.Services.Models
         [Index(25)]
         public string Country { get; set; }
 
+        private string _weight;
+
         [Index(26)]
-        public string Weight { get; set; }
+        public string Weight
+        {
+            get { return _weight; }
+            set { _weight = value.Replace(',', '.'); }
+        }
 
         [Index(54)]
         public string LabelCount { get; set; }

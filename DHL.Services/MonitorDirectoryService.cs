@@ -6,13 +6,13 @@ namespace DHL.Services
 {
     public class MonitorDirectoryService : IMonitorDirectoryService
     {
-        private readonly IDhlFileProcessor _dhlFileProcessor;
         private readonly string _inputPath;
+        private readonly IDhlFileProcessor _dhlFileProcessor;
 
-        public MonitorDirectoryService(IDhlFileProcessor dhlProcessor, string inputPath)
+        public MonitorDirectoryService(string inputPath, IDhlFileProcessor dhlProcessor)
         {
-            _dhlFileProcessor = dhlProcessor;
             _inputPath = inputPath;
+            _dhlFileProcessor = dhlProcessor;
         }
 
         public void StartMonitoring()

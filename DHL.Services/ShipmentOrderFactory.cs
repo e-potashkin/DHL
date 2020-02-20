@@ -1,4 +1,5 @@
 using System;
+using DHL.Common.Extensions;
 using DHL.Common.Models.Authentication;
 using DHL.Services.Abstractions;
 using DHL.Services.Models;
@@ -19,7 +20,7 @@ namespace DHL.Services
             _authConfig = authConfig;
         }
 
-        public string CreatePayload(ShipmentOrder shipmentOrder)
+        public string CreatePayload(ShipmentOrder shipmentOrder, MgTechnoCompanyInfo companyInfo)
         {
             return $@"<?xml version=""1.0"" encoding=""utf-8""?>
 <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:cis=""http://dhl.de/webservice/cisbase"" xmlns:bus=""http://dhl.de/webservices/businesscustomershipping"">
@@ -51,21 +52,21 @@ namespace DHL.Services
                </ShipmentDetails>
                <Shipper>
                   <Name>
-                     <cis:name1>{shipmentOrder.FirstName}</cis:name1>
+                     <cis:name1>{companyInfo.Manufacturer}</cis:name1>
                      <cis:name2>{shipmentOrder.CompanyName}</cis:name2>
                   </Name>
                   <Address>
-                     <cis:streetName>Westenhellweg</cis:streetName>
-                     <cis:streetNumber>106</cis:streetNumber>
-                     <cis:zip>44137</cis:zip>
-                     <cis:city>Dortmund</cis:city>
+                     <cis:streetName>{companyInfo.Address.Street.GetStreetName()}</cis:streetName>
+                     <cis:streetNumber>{companyInfo.Address.Street.GetStreetNumber()}</cis:streetNumber>
+                     <cis:zip>{companyInfo.Address.ZipCode}</cis:zip>
+                     <cis:city>{companyInfo.Address.City}</cis:city>
                      <cis:Origin>
-                        <cis:country>{Country}</cis:country>
+                        <cis:countryISOCode>{companyInfo.CountryId}</cis:countryISOCode>
                      </cis:Origin>
                   </Address>
                </Shipper>
                <Receiver>
-                  <cis:name1>DHL Paket GmbH</cis:name1>
+                  <cis:name1>{shipmentOrder.FirstName} {shipmentOrder.LastName}</cis:name1>
                   <Address>
                      <cis:streetName>{shipmentOrder.StreetName}</cis:streetName>
                      <cis:streetNumber>{shipmentOrder.StreetNumber}</cis:streetNumber>

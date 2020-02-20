@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using DHL.Common.Extensions;
 using DHL.Services.Abstractions;
 using DHL.Services.Models;
 using Serilog;
@@ -7,12 +8,17 @@ namespace DHL.Services
 {
     public class DhlFileProcessor : IDhlFileProcessor
     {
+        private readonly ICompanyService _companyService;
         private readonly IImportService _importService;
         private readonly IFileManagerService _fileManagerService;
         private readonly IShipmentOrderSender _shipmentOrderSender;
 
-        public DhlFileProcessor(IImportService importService, IFileManagerService fileManagerService, IShipmentOrderSender shipmentOrderSender)
+        public DhlFileProcessor(ICompanyService companyService,
+                                IImportService importService,
+                                IFileManagerService fileManagerService,
+                                IShipmentOrderSender shipmentOrderSender)
         {
+            _companyService = companyService;
             _importService = importService;
             _fileManagerService = fileManagerService;
             _shipmentOrderSender = shipmentOrderSender;
@@ -22,11 +28,12 @@ namespace DHL.Services
         {
             var orders = _importService.ImportCsv<ShipmentOrder>(filePath);
             var outputDirectory = _fileManagerService.Move(filePath);
+            var companyInfo = await _companyService.GetCompanyInfo().ConfigureAwait(false);
 
             foreach (var order in orders)
             {
                 Log.Information("Request to the DHL started.");
-                var response = await _shipmentOrderSender.SendAsync<ShipmentOrderResponse>(order).ConfigureAwait(false);
+                var response = await _shipmentOrderSender.SendAsync<ShipmentOrderResponse>(order, companyInfo).ConfigureAwait(false);
 
                 if (response.IsSuccessful)
                 {

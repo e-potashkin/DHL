@@ -9,5 +9,7 @@ namespace DHL.Configuration
         public string OutputPath { get; set; }
 
         public AuthConfiguration AuthConfiguration { get; set; }
+
+        public MgTechnoAuthConfiguration MgTechnoAuthConfiguration { get; set; }
     }
 }

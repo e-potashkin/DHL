@@ -4,6 +4,6 @@ namespace DHL.Services.Abstractions
 {
     public interface IShipmentOrderFactory
     {
-        string CreatePayload(ShipmentOrder shipmentOrder);
+        string CreatePayload(ShipmentOrder shipmentOrder, MgTechnoCompanyInfo companyInfo);
     }
 }

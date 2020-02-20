@@ -50,7 +50,6 @@ namespace DHL.Common.Utils
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration).Enrich.WithExceptionDetails().Enrich.FromLogContext()
                 .Destructure.UsingAttributes()
-                .WriteTo.Console()
                 .WriteTo.File("logs\\dhl.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 

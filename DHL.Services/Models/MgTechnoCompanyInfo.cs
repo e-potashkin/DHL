@@ -4,7 +4,7 @@ namespace DHL.Services.Models
 {
     public class MgTechnoCompanyInfo
     {
-        private string manufacturer;
+        private string _manufacturer;
 
         public int Id { get; set; }
 
@@ -16,8 +16,8 @@ namespace DHL.Services.Models
 
         public string Manufacturer
         {
-            get { return manufacturer; }
-            set { manufacturer = value.ConvertAmpToHtmlSymbol(); }
+            get { return _manufacturer; }
+            set { _manufacturer = value.ConvertAmpToHtmlSymbol(); }
         }
 
         public string Name { get; set; }

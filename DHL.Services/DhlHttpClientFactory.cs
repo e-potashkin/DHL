@@ -18,6 +18,7 @@ namespace DHL.Services
         public byte[] DownloadFile(string request)
         {
             var restClient = new RestClient(request);
+
             return restClient.DownloadData(new RestRequest("#", Method.GET));
         }
 

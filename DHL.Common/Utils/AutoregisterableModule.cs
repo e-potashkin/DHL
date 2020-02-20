@@ -9,14 +9,14 @@ using Module = Autofac.Module;
 namespace DHL.Common.Utils
 {
     /// <summary>
-    /// TopUp container components registry
+    ///     TopUp container components registry
     /// </summary>
     public class AutoregisterableModule : Module
     {
         private readonly string _nameFilter;
 
         /// <summary>
-        /// Default ctor
+        ///     Default ctor
         /// </summary>
         /// <param name="nameFilter">Load will only search assemblies with names that contains filter</param>
         public AutoregisterableModule(string nameFilter)
@@ -25,7 +25,7 @@ namespace DHL.Common.Utils
         }
 
         /// <summary>
-        /// Register's dependencies
+        ///     Register's dependencies
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
@@ -35,7 +35,8 @@ namespace DHL.Common.Utils
 
             var isProd = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production";
 
-            var containerBuilder = builder.RegisterAssemblyTypes(dependencies.Select(library => Assembly.Load(new AssemblyName(library.Name))).ToArray()).AsImplementedInterfaces();
+            var containerBuilder = builder.RegisterAssemblyTypes(dependencies.Select(library => Assembly.Load(new AssemblyName(library.Name))).ToArray())
+                .AsImplementedInterfaces();
             if (!isProd) containerBuilder.EnableInterfaceInterceptors();
 
             base.Load(builder);

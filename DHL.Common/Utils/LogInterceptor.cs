@@ -22,7 +22,8 @@ namespace DHL.Common.Utils
             invocation.Proceed();
 
             var isAsync = method.GetCustomAttribute(typeof(AsyncStateMachineAttribute)) != null;
-            if (isAsync && typeof(Task).IsAssignableFrom(method.ReturnType)) invocation.ReturnValue = InterceptAsync((dynamic)invocation.ReturnValue, method.Name);
+            if (isAsync && typeof(Task).IsAssignableFrom(method.ReturnType))
+                invocation.ReturnValue = InterceptAsync((dynamic)invocation.ReturnValue, method.Name);
 
             if (!isAsync) LogOutput(method.Name, invocation.ReturnValue);
         }

@@ -17,17 +17,17 @@ namespace DHL
             var configurationBuilder = new ConfigurationBuilder();
 
             return new ApplicationConfigurator<AppConfiguration>(null, (builder, appConfig) =>
-            {
-                services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-                builder.RegisterModule(new AutoregisterableModule(typeof(Startup).Assembly.GetName().Name));
-                builder.RegisterModule(new ServicesModule(appConfig));
-                builder.Populate(services);
-                Directory.CreateDirectory(appConfig.InputPath);
-                Directory.CreateDirectory(appConfig.OutputPath);
-            }, configurationBuilder)
-            .AddEnvironmentVariables()
-            .AddJsonFile(EnvironmentConfigurator.GetEnvironmentName())
-            .Configure();
+                {
+                    services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+                    builder.RegisterModule(new AutoregisterableModule(typeof(Startup).Assembly.GetName().Name));
+                    builder.RegisterModule(new ServicesModule(appConfig));
+                    builder.Populate(services);
+                    Directory.CreateDirectory(appConfig.InputPath);
+                    Directory.CreateDirectory(appConfig.OutputPath);
+                }, configurationBuilder)
+                .AddEnvironmentVariables()
+                .AddJsonFile(EnvironmentConfigurator.GetEnvironmentName())
+                .Configure();
         }
     }
 }

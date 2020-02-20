@@ -7,22 +7,22 @@ using Polly.Retry;
 namespace DHL.Common.Helpers
 {
     /// <summary>
-    /// Responsible for retry an operation.
+    ///     Responsible for retry an operation.
     /// </summary>
     public static class RetryingHelper
     {
         /// <summary>
-        /// The default attempts of retry operation.
+        ///     The default attempts of retry operation.
         /// </summary>
         private const int DefaultMaxRetryAttempts = 3;
 
         /// <summary>
-        /// The default pause between retry in milliseconds.
+        ///     The default pause between retry in milliseconds.
         /// </summary>
         private const int DefaultPauseInMilliseconds = 50;
 
         /// <summary>
-        /// The default policy which handle the ApiException of RestEasy.
+        ///     The default policy which handle the ApiException of RestEasy.
         /// </summary>
         public static AsyncRetryPolicy CreateDefaultPolicy<TException>() where TException : Exception
         {
@@ -33,7 +33,7 @@ namespace DHL.Common.Helpers
         }
 
         /// <summary>
-        /// Creates new policy. The handler of exception is the ApiException of RestEasy.
+        ///     Creates new policy. The handler of exception is the ApiException of RestEasy.
         /// </summary>
         /// <param name="maxRetryAttempts">The default attempts of retry operation.</param>
         /// <param name="pauseInMilliseconds">The default pause between retry in milliseconds.</param>
@@ -46,7 +46,7 @@ namespace DHL.Common.Helpers
         }
 
         /// <summary>
-        /// Creates new policy.
+        ///     Creates new policy.
         /// </summary>
         /// <typeparam name="TException">Type of handling exception.</typeparam>
         /// <param name="maxRetryAttempts">The default attempts of retry operation.</param>
@@ -60,7 +60,7 @@ namespace DHL.Common.Helpers
         }
 
         /// <summary>
-        /// Executes operation which need retry at fail.
+        ///     Executes operation which need retry at fail.
         /// </summary>
         /// <param name="policy">The retry policy.</param>
         /// <param name="actionAsync">The executing action.</param>
@@ -70,7 +70,7 @@ namespace DHL.Common.Helpers
         }
 
         /// <summary>
-        /// Executes operation which need retry at fail and returns result.
+        ///     Executes operation which need retry at fail and returns result.
         /// </summary>
         /// <typeparam name="TResponse">The response type.</typeparam>
         /// <param name="policy">The retry policy.</param>

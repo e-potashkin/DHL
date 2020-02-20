@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using DHL.Common.Extensions;
 using DHL.Services.Abstractions;
 using DHL.Services.Models;
 using Serilog;
@@ -9,14 +8,14 @@ namespace DHL.Services
     public class DhlFileProcessor : IDhlFileProcessor
     {
         private readonly ICompanyService _companyService;
-        private readonly IImportService _importService;
         private readonly IFileManagerService _fileManagerService;
+        private readonly IImportService _importService;
         private readonly IShipmentOrderSender _shipmentOrderSender;
 
         public DhlFileProcessor(ICompanyService companyService,
-                                IImportService importService,
-                                IFileManagerService fileManagerService,
-                                IShipmentOrderSender shipmentOrderSender)
+            IImportService importService,
+            IFileManagerService fileManagerService,
+            IShipmentOrderSender shipmentOrderSender)
         {
             _companyService = companyService;
             _importService = importService;

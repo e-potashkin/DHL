@@ -14,7 +14,7 @@ namespace DHL.Configuration
         }
 
         /// <summary>
-        /// Registers dependencies
+        ///     Registers dependencies
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {

@@ -12,11 +12,10 @@ namespace DHL.Services
     [Intercept(typeof(LogInterceptor))]
     public class ShipmentOrderSender : IShipmentOrderSender
     {
-        private readonly IShipmentOrderFactory _shipmentOrderFactory;
         private readonly IDhlHttpClientFactory _dhlHttpClientFactory;
+        private readonly IShipmentOrderFactory _shipmentOrderFactory;
 
-        public ShipmentOrderSender(IShipmentOrderFactory shipmentOrderFactory,
-                                   IDhlHttpClientFactory dhlHttpClientFactory)
+        public ShipmentOrderSender(IShipmentOrderFactory shipmentOrderFactory, IDhlHttpClientFactory dhlHttpClientFactory)
         {
             _shipmentOrderFactory = shipmentOrderFactory;
             _dhlHttpClientFactory = dhlHttpClientFactory;

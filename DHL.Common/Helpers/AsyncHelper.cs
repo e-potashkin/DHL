@@ -9,7 +9,7 @@ namespace DHL.Common.Helpers
     public static class AsyncHelper
     {
         /// <summary>
-        /// Executes an async Task method which has a void return value synchronously
+        ///     Executes an async Task method which has a void return value synchronously
         /// </summary>
         /// <param name="task">Task method to execute</param>
         public static void RunSync(Func<Task> task)
@@ -39,7 +39,7 @@ namespace DHL.Common.Helpers
         }
 
         /// <summary>
-        /// Executes an async Task<T> method which has a T return type synchronously
+        ///     Executes an async Task<T> method which has a T return type synchronously
         /// </summary>
         /// <typeparam name="T">Return Type</typeparam>
         /// <param name="task">Task<T> method to execute</param>
@@ -74,12 +74,12 @@ namespace DHL.Common.Helpers
 
         private class ExclusiveSynchronizationContext : SynchronizationContext
         {
+            private readonly Queue<Tuple<SendOrPostCallback, object>> _items = new Queue<Tuple<SendOrPostCallback, object>>();
+
+            private readonly AutoResetEvent _workItemsWaiting = new AutoResetEvent(false);
             private bool _done;
 
             public Exception InnerException { get; set; }
-
-            private readonly AutoResetEvent _workItemsWaiting = new AutoResetEvent(false);
-            private readonly Queue<Tuple<SendOrPostCallback, object>> _items = new Queue<Tuple<SendOrPostCallback, object>>();
 
             public override void Send(SendOrPostCallback d, object state)
             {
@@ -92,6 +92,7 @@ namespace DHL.Common.Helpers
                 {
                     _items.Enqueue(Tuple.Create(d, state));
                 }
+
                 _workItemsWaiting.Set();
             }
 
@@ -112,6 +113,7 @@ namespace DHL.Common.Helpers
                             task = _items.Dequeue();
                         }
                     }
+
                     if (task != null)
                     {
                         task.Item1(task.Item2);

@@ -6,8 +6,8 @@ namespace DHL.Services
 {
     public class MonitorDirectoryService : IMonitorDirectoryService
     {
-        private readonly string _inputPath;
         private readonly IDhlFileProcessor _dhlFileProcessor;
+        private readonly string _inputPath;
 
         public MonitorDirectoryService(string inputPath, IDhlFileProcessor dhlProcessor)
         {
@@ -17,13 +17,7 @@ namespace DHL.Services
 
         public void StartMonitoring()
         {
-            var fileSystemWatcher = new FileSystemWatcher
-            {
-                Path = _inputPath,
-                Filter = "*.csv",
-                EnableRaisingEvents = true
-            };
-
+            var fileSystemWatcher = new FileSystemWatcher { Path = _inputPath, Filter = "*.csv", EnableRaisingEvents = true };
             fileSystemWatcher.Created += FileSystemWatcher_Created;
         }
 

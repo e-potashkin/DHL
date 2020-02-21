@@ -5,10 +5,15 @@ namespace DHL.Services.Models
     public class MgTechnoCompanyInfo
     {
         private string _manufacturer;
+        private string _brand;
 
         public int Id { get; set; }
 
-        public string Brand { get; set; }
+        public string Brand
+        {
+            get { return _brand; }
+            set { _brand = value.ConvertAmpToHtmlSymbol(); }
+        }
 
         public string CountryId { get; set; }
 
@@ -29,6 +34,8 @@ namespace DHL.Services.Models
 
     public class Address
     {
+        private string _zipCode;
+
         public string City { get; set; }
 
         public string Company { get; set; }
@@ -41,6 +48,10 @@ namespace DHL.Services.Models
 
         public string Street { get; set; }
 
-        public string ZipCode { get; set; }
+        public string ZipCode
+        {
+            get { return _zipCode; }
+            set { _zipCode = value.GetNumber(); }
+        }
     }
 }

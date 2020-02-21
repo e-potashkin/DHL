@@ -10,8 +10,8 @@ namespace DHL.Common.Extensions
 
         public static string RemoveLtGtSymbol(this string input) => input.Replace("&lt;", string.Empty).Replace("&gt;", string.Empty);
 
-        public static string GetStreetName(this string input) => new string(input.Where(x => char.IsLetter(x) || char.IsPunctuation(x)).ToArray());
+        public static string GetName(this string input) => new string(input.Where(x => char.IsLetter(x) || char.IsPunctuation(x)).ToArray());
 
-        public static string GetStreetNumber(this string input) => new string(input.Where(char.IsDigit).ToArray());
+        public static string GetNumber(this string input) => new string(input.Where(char.IsDigit).ToArray());
     }
 }

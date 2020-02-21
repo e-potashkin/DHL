@@ -27,13 +27,11 @@ namespace DHL.Services
         {
             var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder, companyInfo);
 
-            var response = await RetryingHelper
+            return await RetryingHelper
                 .CreateDefaultPolicy<Exception>()
                 .ExecuteWithPolicy(() => _dhlHttpClientFactory
                 .CreateShipmentOrderRequestAsync<T>(payload))
                 .ConfigureAwait(false);
-
-            return response;
         }
     }
 }

@@ -6,8 +6,8 @@ namespace DHL.Services
 {
     public class MonitorDirectoryService : IMonitorDirectoryService
     {
-        private readonly IDhlFileProcessor _dhlFileProcessor;
         private readonly string _inputPath;
+        private readonly IDhlFileProcessor _dhlFileProcessor;
 
         public MonitorDirectoryService(string inputPath, IDhlFileProcessor dhlProcessor)
         {

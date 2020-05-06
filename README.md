@@ -1,1 +1,1 @@
-# DHL download and print labels implementation for .net
+# Download and print DHL labels implementation for .net

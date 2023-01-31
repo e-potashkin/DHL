@@ -14,14 +14,13 @@ namespace DHL.Services
             _authConfig = authConfig;
         }
 
-        public async Task<IRestResponse<T>> GetAuthenticationToken<T>()
+        public async Task<RestResponse<T>> GetAuthenticationToken<T>()
         {
-            var restClient = new RestClient(_authConfig.AuthUrl)
+            var restClient = new RestClient(_authConfig.AuthUrl);
+            var request = new RestRequest
             {
-                Timeout = -1
+                Method = Method.Post
             };
-
-            var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json");
             request.AddJsonBody(_authConfig);
             request.OnBeforeDeserialization = response => response.ContentType = "application/json";
@@ -29,14 +28,14 @@ namespace DHL.Services
             return await restClient.ExecuteAsync<T>(request).ConfigureAwait(false);
         }
 
-        public async Task<IRestResponse<T>> GetCompanyInfo<T>(string authToken)
+        public async Task<RestResponse<T>> GetCompanyInfo<T>(string authToken)
         {
-            var restClient = new RestClient(_authConfig.CompanyUrl)
+            var restClient = new RestClient(_authConfig.CompanyUrl);
+            var request = new RestRequest
             {
-                Timeout = -1
+                Method = Method.Get
             };
-
-            var request = new RestRequest(Method.GET);
+            
             request.AddHeader("Authorization", $"Bearer {authToken}");
             request.OnBeforeDeserialization = response => response.ContentType = "application/json";
 

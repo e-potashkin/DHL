@@ -23,7 +23,7 @@ namespace DHL.Services
 
         public byte[] DownloadFile(string request) => _dhlHttpClientFactory.DownloadFile(request);
 
-        public async Task<IRestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrder, MgTechnoCompanyInfo companyInfo)
+        public async Task<RestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrder, MgTechnoCompanyInfo companyInfo)
         {
             var payload = _shipmentOrderFactory.CreatePayload(shipmentOrder, companyInfo);
 

@@ -7,6 +7,6 @@ namespace DHL.Services.Abstractions
     {
         byte[] DownloadFile(string request);
 
-        Task<IRestResponse<T>> CreateShipmentOrderRequestAsync<T>(string payload);
+        Task<RestResponse<T>> CreateShipmentOrderRequestAsync<T>(string payload);
     }
 }

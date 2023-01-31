@@ -8,6 +8,6 @@ namespace DHL.Services.Abstractions
     {
         byte[] DownloadFile(string directory);
 
-        Task<IRestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrders, MgTechnoCompanyInfo companyInfo);
+        Task<RestResponse<T>> SendAsync<T>(ShipmentOrder shipmentOrders, MgTechnoCompanyInfo companyInfo);
     }
 }

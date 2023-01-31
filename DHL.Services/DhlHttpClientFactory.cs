@@ -19,17 +19,19 @@ namespace DHL.Services
         {
             var restClient = new RestClient(request);
 
-            return restClient.DownloadData(new RestRequest("#", Method.GET));
+            return restClient.DownloadData(new RestRequest("#"));
         }
 
-        public async Task<IRestResponse<T>> CreateShipmentOrderRequestAsync<T>(string payload)
+        public async Task<RestResponse<T>> CreateShipmentOrderRequestAsync<T>(string payload)
         {
-            var restClient = new RestClient(_authConfig.Url)
-            {
-                Authenticator = new HttpBasicAuthenticator(_authConfig.ApiUser, _authConfig.ApiPassword)
-            };
+            var restClient = new RestClient(_authConfig.Url);
 
-            var request = new RestRequest(Method.POST);
+            restClient.Options.Authenticator = new HttpBasicAuthenticator(_authConfig.ApiUser, _authConfig.ApiPassword);
+
+            var request = new RestRequest
+            {
+                Method = Method.Post
+            };
             request.AddHeader("SOAPAction", "urn:createShipmentOrder");
             request.AddParameter("undefined", payload, ParameterType.RequestBody);
             request.OnBeforeDeserialization = response => response.ContentType = "application/xml";

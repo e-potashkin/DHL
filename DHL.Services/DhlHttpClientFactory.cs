@@ -24,9 +24,10 @@ namespace DHL.Services
 
         public async Task<RestResponse<T>> CreateShipmentOrderRequestAsync<T>(string payload)
         {
-            var restClient = new RestClient(_authConfig.Url);
-
-            restClient.Options.Authenticator = new HttpBasicAuthenticator(_authConfig.ApiUser, _authConfig.ApiPassword);
+            var restClient = new RestClient(_authConfig.Url)
+            {
+                Authenticator = new HttpBasicAuthenticator(_authConfig.ApiUser, _authConfig.ApiPassword)
+            };
 
             var request = new RestRequest
             {
